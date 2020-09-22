@@ -1,0 +1,21 @@
+//**************************************************************************************************************\\
+// The Code is Below
+//**************************************************************************************************************\\
+
+Public Function explodeargs(ByVal s, ByRef arg() As String, Optional ByVal splitpattern As String = "*|*|*") As Integer
+            On Error Resume Next ' on error, just quietly continue on to next operation
+            Dim i
+            For i = 0 To 30 Step 1 ' assume maximum 30 option strings
+                arg(i) = Null ' null everything in the array first
+            Next
+
+            On Error GoTo ExtractionFinished
+            For i = 0 To 30 Step 1
+                arg(i) = Split(s, splitpattern)(i) ' begin splitting, if an error occurs, then auto exit
+            Next
+
+ExtractionFinished:
+            explodeargs = i - 1
+End Function
+
+
